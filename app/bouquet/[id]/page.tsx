@@ -14,6 +14,10 @@ export default async function BouquetPage(props: Params) {
   const params = await props.params;
   const { id } = params;
 
+  if (!supabase) {
+    return <div>Supabase is not configured.</div>;
+  }
+
   const { data, error } = await supabase
     .from("bouquets")
     .select()

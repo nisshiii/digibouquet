@@ -3,6 +3,8 @@ import { useBouquet } from "../../context/BouquetContext";
 
 export default function CardWriter() {
   const { bouquet, setBouquet } = useBouquet();
+  const messageValue =
+    typeof bouquet.letter.message === "string" ? bouquet.letter.message : "";
   const fontOptions = [
     { value: "martian", label: "Martian Mono" },
     { value: "playfair", label: "Playfair Display" },
@@ -94,7 +96,7 @@ export default function CardWriter() {
               <div>
                 <textarea
                   id="message"
-                  value={bouquet.letter.message || ""}
+                  value={messageValue}
                   onChange={(e) =>
                     setBouquet((prev) => ({
                       ...prev,

@@ -5,6 +5,10 @@ import Link from "next/link";
 import BouquetOnly from "../../components/bouquet/BouquetOnly";
 
 export default async function AllBouquetsPage() {
+  if (!supabase) {
+    return <div>Supabase is not configured.</div>;
+  }
+
   const { data, error } = await supabase
     .from("bouquets")
     .select("*")

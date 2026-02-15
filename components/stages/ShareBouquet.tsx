@@ -24,6 +24,11 @@ export default function ShareBouquet() {
   const router = useRouter();
 
   const handleCreateBouquet = async (bouquet: BouquetType) => {
+    if (!supabase) {
+      console.error("Supabase is not configured.");
+      return;
+    }
+
     const short_id = nanoid(8);
 
     const { data, error } = await supabase
