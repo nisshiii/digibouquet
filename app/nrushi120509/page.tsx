@@ -46,8 +46,8 @@ const bouquet = {
     { id: 5, count: 1 },
   ],
   letter: {
-    sender: "Rushi",
-    recipient: "Naiyu",
+    sender: "Him",
+    recipient: "You",
     message: letterMessage,
     font: "playfair",
   },
