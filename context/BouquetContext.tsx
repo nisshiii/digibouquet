@@ -41,6 +41,7 @@ export function BouquetProvider({ children, mode }: BouquetProviderProps) {
     greenery: 0,
     timestamp: Date.now(),
     flowerOrder: [],
+    font: "martian",
   });
 
   // Calculate total flowers for validation using utility function

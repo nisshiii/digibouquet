@@ -3,10 +3,46 @@ import { useBouquet } from "../../context/BouquetContext";
 
 export default function CardWriter() {
   const { bouquet, setBouquet } = useBouquet();
+  const fontOptions = [
+    { value: "martian", label: "Martian Mono" },
+    { value: "playfair", label: "Playfair Display" },
+    { value: "crimson", label: "Crimson Text" },
+    { value: "dmserif", label: "DM Serif Display" },
+  ];
+  const fontClassMap: Record<string, string> = {
+    martian: "font-martian",
+    playfair: "font-playfair",
+    crimson: "font-crimson",
+    dmserif: "font-dmserif",
+  };
+  const fontClass =
+    fontClassMap[bouquet.font ?? "martian"] ?? fontClassMap.martian;
   return (
     <div className="text-center">
       <div>
         <h2 className="text-md my-8">WRITE THE CARD</h2>
+        <div className="flex justify-center items-center gap-3 mb-6">
+          <label htmlFor="card-font" className="text-sm uppercase">
+            Card font
+          </label>
+          <select
+            id="card-font"
+            value={bouquet.font ?? "martian"}
+            onChange={(e) =>
+              setBouquet((prev) => ({
+                ...prev,
+                font: e.target.value,
+              }))
+            }
+            className="border border-black px-3 py-2 text-sm bg-white"
+          >
+            {fontOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="flex flex-row items-center justify-center">
           {/* White card container with black border */}
           <div className="flex flex-row items-center justify-center -space-x-12">
@@ -33,7 +69,9 @@ export default function CardWriter() {
             />
           </div>
 
-          <div className="bg-white border-2 border-black p-10 max-w-lg mx-10">
+          <div
+            className={`bg-white border-2 border-black p-10 max-w-lg mx-10 ${fontClass}`}
+          >
             <div className="space-y-4">
               <div className="flex flex-row items-left justify-left gap-2">
                 <label htmlFor="recipient">Dear </label>

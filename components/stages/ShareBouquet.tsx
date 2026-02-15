@@ -33,7 +33,10 @@ export default function ShareBouquet() {
           short_id: short_id,
           mode: bouquet.mode,
           flowers: bouquet.flowers,
-          letter: bouquet.letter,
+          letter: {
+            ...bouquet.letter,
+            font: bouquet.font,
+          },
           timestamp: bouquet.timestamp,
           greenery: bouquet.greenery,
           flowerOrder: bouquet.flowerOrder,

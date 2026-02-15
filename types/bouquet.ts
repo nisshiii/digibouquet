@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import type { ReactNode } from "react";
 
 // Full flower data structure (from data source)
 export interface Flower {
@@ -20,7 +21,8 @@ export interface BouquetFlower {
 export interface BouquetLetter {
   sender: string;
   recipient: string;
-  message: string;
+  message: ReactNode;
+  font?: string;
 }
 
 // Main bouquet data structure
@@ -31,6 +33,7 @@ export interface Bouquet {
   timestamp: number;
   greenery: number;
   flowerOrder: number[];
+  font?: string;
 }
 
 // Type for the setBouquet function passed to components
@@ -45,4 +48,5 @@ export interface BouquetProps {
 // Props type for components that only receive bouquet (read-only)
 export interface BouquetReadOnlyProps {
   bouquet: Bouquet;
+  hideFlowers?: boolean;
 }

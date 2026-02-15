@@ -3,6 +3,15 @@ import { flowers } from "../../data/data";
 import type { BouquetReadOnlyProps } from "@/types/bouquet";
 
 export default function BouquetOnly({ bouquet }: BouquetReadOnlyProps) {
+  const getRotation = (seed: string) => {
+    let hash = 0;
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = (hash * 31 + seed.charCodeAt(i)) | 0;
+    }
+    const normalized = Math.abs(hash % 1000) / 1000;
+    return normalized * 10 - 5;
+  };
+
   // Helper function to get flower dimensions based on size
   const getFlowerDimensions = (size: string) => {
     switch (size) {
@@ -45,8 +54,9 @@ export default function BouquetOnly({ bouquet }: BouquetReadOnlyProps) {
                 return Array(flower.count)
                   .fill(null)
                   .map((_, instanceIndex) => {
-                    // Generate random rotation for each flower (-5 to +5 degrees)
-                    const rotation = Math.random() * 10 - 5;
+                    const rotation = getRotation(
+                      `${bouquet.mode}-${bouquet.greenery}-${flower.id}-${flowerIndex}-${instanceIndex}`
+                    );
 
                     // Determine the visual order of this flower instance
                     // If flowerOrder exists, use it; otherwise use default order
