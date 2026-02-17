@@ -7,6 +7,7 @@ import Bouquet from "../bouquet/Bouquet";
 import { useBouquet } from "../../context/BouquetContext";
 import type { Bouquet as BouquetType } from "@/types/bouquet";
 import { useState } from "react";
+import { serializeBouquetToShareToken } from "@/lib/share-token";
 
 export default function ShareBouquet() {
   const { bouquet } = useBouquet();
@@ -27,21 +28,8 @@ export default function ShareBouquet() {
   const router = useRouter();
 
   const buildFallbackLink = (bouquetData: BouquetType) => {
-    const serializableBouquet = {
-      ...bouquetData,
-      letter: {
-        ...bouquetData.letter,
-        message:
-          typeof bouquetData.letter.message === "string"
-            ? bouquetData.letter.message
-            : "",
-      },
-    };
-
-    const encodedBouquet = encodeURIComponent(
-      JSON.stringify(serializableBouquet)
-    );
-    return `${window.location.origin}/bouquet/shared?data=${encodedBouquet}`;
+    const token = serializeBouquetToShareToken(bouquetData);
+    return `${window.location.origin}/bouquet/shared?d=${token}`;
   };
 
   const handleShareLink = async (url: string) => {

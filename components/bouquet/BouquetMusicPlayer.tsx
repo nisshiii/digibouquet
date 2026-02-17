@@ -134,8 +134,10 @@ export default function BouquetMusicPlayer({
           <Play className="h-4 w-4" fill="currentColor" strokeWidth={2.25} />
         )}
       </button>
-      <div className="leading-tight">
-        <p className="text-xs uppercase tracking-wide">{headerLabel}</p>
+      <div className="leading-tight max-w-[90vw] sm:max-w-[28rem]">
+        <p className="text-xs uppercase tracking-wide whitespace-normal break-words">
+          {headerLabel}
+        </p>
       </div>
 
       {isPlaying ? (

@@ -3,6 +3,7 @@ import Image from "next/image";
 interface BouquetHeroProps {
   mode: string;
   greenery: number;
+  replaceSunflowerWithLily?: boolean;
 }
 
 const placements = [
@@ -10,7 +11,7 @@ const placements = [
   { name: "anemone", size: 126, left: 58, top: 8, rotate: 10, z: 8 },
   { name: "carnation", size: 170, left: 25, top: 10, rotate: -4, z: 7 },
   { name: "rose", size: 135, left: 56, top: 20, rotate: 8, z: 8 },
-  { name: "rose", size: 132, left: 12, top: 24, rotate: -7, z: 7 },
+  { name: "peony", size: 132, left: 12, top: 24, rotate: -7, z: 7 },
   { name: "rose", size: 118, left: 10, top: 36, rotate: -10, z: 8 },
   { name: "orchid", size: 108, left: 15, top: 44, rotate: -16, z: 8 },
   { name: "sunflower", size: 210, left: 24, top: 33, rotate: 2, z: 9 },
@@ -23,7 +24,17 @@ const placements = [
   { name: "orchid", size: 110, left: 66, top: 56, rotate: 12, z: 7 },
 ];
 
-export default function BouquetHero({ mode, greenery }: BouquetHeroProps) {
+export default function BouquetHero({
+  mode,
+  greenery,
+  replaceSunflowerWithLily = false,
+}: BouquetHeroProps) {
+  const renderedPlacements = replaceSunflowerWithLily
+    ? placements.map((flower) =>
+        flower.name === "sunflower" ? { ...flower, name: "lily" } : flower
+      )
+    : placements;
+
   return (
     <div className="relative mx-auto w-[92vw] max-w-[720px] h-[560px] sm:h-[720px] animate-bouquet-rise">
       <Image
@@ -44,7 +55,7 @@ export default function BouquetHero({ mode, greenery }: BouquetHeroProps) {
         priority
       />
 
-      {placements.map((flower, index) => (
+      {renderedPlacements.map((flower, index) => (
         <Image
           key={`${flower.name}-${flower.left}-${flower.top}`}
           src={`/${mode}/flowers/${flower.name}.png`}

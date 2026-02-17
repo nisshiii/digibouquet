@@ -69,17 +69,20 @@ export default function LovePage() {
         </div>
 
         <div className="flex flex-col items-center gap-2 relative">
-          <div className="pointer-events-none absolute left-1/2 top-[40%] z-[5] w-[125vw] max-w-[980px] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d7e8ff]" />
-          <div className="-mb-16 sm:-mb-24 -translate-x-3 sm:-translate-x-5 relative z-20">
-            <BouquetHero mode={bouquet.mode} greenery={bouquet.greenery} />
+          <div className="pointer-events-none absolute left-1/2 top-[10%] z-[5] w-[125vw] max-w-[700px] aspect-square -translate-x-1/2 -translate-y rounded-full bg-[#d7e8ff]" />
+          <div className="-mb-43 sm:-mb-36 relative z-20 -translate-x--5">
+            <BouquetHero
+              mode={bouquet.mode}
+              greenery={bouquet.greenery}
+            />
           </div>
           <div className="relative z-10 animate-card-rise">
             <Bouquet bouquet={bouquet} hideFlowers />
           </div>
-          <div className="text-center">
+          <div className="text-center mt-7">
             <BouquetMusicPlayer songUrl={songUrl} songPlatform="youtube" />
             <p className="mt-3 text-xs text-gray-600">
-              If audio does not auto-play, tap the play button or open it on{" "}
+              Baby, if audio doesn't play, tap the play button or open it on{" "}
               <a
                 href={songUrl}
                 className="underline"

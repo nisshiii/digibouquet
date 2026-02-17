@@ -8,11 +8,6 @@ const nextConfig = {
     // ignoreBuildErrors: true,
   },
   images: {},
-  experimental: {
-    webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
-  },
 };
 
 
